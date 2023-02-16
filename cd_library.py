@@ -79,10 +79,10 @@ class cd_spectra():
     self.path = path
     self.name = os.path.basename(self.path)[:-4]
     
-    cols = ['Wavelength [nm]', 'CD [mdeg]', 'HT [V]']
+    self.cols = ['Wavelength [nm]', 'CD [mdeg]', 'HT [V]']
     
     if abs:
-      cols = ['Wavelength [nm]', 'CD [mdeg]', 'HT [V]', 'Abs [UA]']
+      self.cols = ['Wavelength [nm]', 'CD [mdeg]', 'HT [V]', 'Abs [UA]']
     
     with open(self.path) as rawdata: 
       file_csv = csv.reader(rawdata)
@@ -101,7 +101,7 @@ class cd_spectra():
     self.info.columns = self.info.iloc[0] #Seteo los nombres de las columnas
     self.info.drop("Information",inplace=True) #Elimino la columna con nombres duplicados
             
-    self.data = pd.read_csv(self.path, delimiter = ';', names =cols, header = start-1, 
+    self.data = pd.read_csv(self.path, delimiter = ';', names =self.cols, header = start-1, 
                                       nrows = (end-start), decimal = ',' )
     
     self.metadata = pd.read_csv(self.path, delimiter = ';', names =['Metadata', 'Data'], header = end+1, decimal = ',' ).T #Creo dataframe con metadata y transpongo con .T
@@ -166,7 +166,7 @@ class cd_spectra():
                 end = position-1 #Encuentro fin de los datos
                 break #Una vez que encuentro el fin de los datos corto la iteración
             
-      self.blank = pd.read_csv(baseline_path, delimiter = ';', names =cols, header = start-1, 
+      self.blank = pd.read_csv(baseline_path, delimiter = ';', names =self.cols, header = start-1, 
                                       nrows = (end-start), decimal = ',' )
       
       wv_min = self.wv_min
@@ -291,7 +291,7 @@ class cd_melting_curve(): #Al llamar la clase debo pasarle el path del archivo .
     self.info.columns = self.info.iloc[0] #Seteo los nombres de las columnas
     self.info.drop("Information",inplace=True) #Elimino la columna con nombres duplicados
             
-    self.data = pd.read_csv(self.path, delimiter = ';', names =cols, header = start-1, 
+    self.data = pd.read_csv(self.path, delimiter = ';', names =self.cols, header = start-1, 
                                       nrows = (end-start), decimal = ',' )
     
     self.metadata = pd.read_csv(self.path, delimiter = ';', names =['Metadata', 'Data'], header = end+1, decimal = ',' ).T #Creo dataframe con metadata y transpongo con .T
