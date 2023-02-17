@@ -408,8 +408,7 @@ class cd_melting_spectra(): #Al llamar la clase debo pasarle el path del archivo
 
     data['CD_filtered [mdeg]'][data['HT [V]'] <= ht_max] = data['CD_raw [mdeg]'][data['HT [V]'] <= ht_max]
     
-    data['Temperature'] = data['Temperature'].astype(float)
-    
+        
     self.data = data
     self.mre_transformation = False
 
@@ -456,6 +455,6 @@ class cd_melting_spectra(): #Al llamar la clase debo pasarle el path del archivo
       column = 'CD_mre [deg.cm2.dmol-1]'
     integrals = []
     for temperature in self.temperatures:
-      integrals.append(self.wv_delta * self.data[column][(self.data['Temperature'] == temperature) & (self.data['Wavelength [nm]'] <= wv_limit_upper) & (self.data['Wavelength [nm]'] >= wv_limit_lower)].sum())
+      integrals.append(self.wv_delta * self.data[column][(self.data['Temperature'].astype(float) == temperature) & (self.data['Wavelength [nm]'] <= wv_limit_upper) & (self.data['Wavelength [nm]'] >= wv_limit_lower)].sum())
     
     self.integrals = integrals
