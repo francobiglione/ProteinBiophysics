@@ -90,7 +90,7 @@ class cd_spectra():
           if position == 0: 
            self.title = line[0].split(';')[1] #Guardo el titulo del espectro] #Guardo el titulo del espectro
           elif "NPOINTS" in line:
-              self.npoints = int(line[1].strip()) #Guardo del numero de puntos adquiridos
+              self.npoints = int(line[0].split(';')[1]) #Guardo del numero de puntos adquiridos
           elif "XYDATA" in line: 
               start = position+1 #Encuentro el número de linea donde empiezan los datos del espectro
           elif '##### Extended Information' in line:
