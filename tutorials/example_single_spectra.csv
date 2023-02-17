@@ -1,0 +1,128 @@
+TITLE;221108_single_spectra_example
+DATA TYPE;
+ORIGIN;JASCO
+OWNER;
+DATE;22/11/08
+TIME;11:16:14
+SPECTROMETER/DATA SYSTEM;
+LOCALE;11274
+RESOLUTION;
+DELTAX;-1
+XUNITS;NANOMETERS
+YUNITS;CD [mdeg]
+Y2UNITS;HT [V]
+FIRSTX;  240,0000
+LASTX;  190,0000
+NPOINTS;      51
+FIRSTY;    -1,25173
+MAXY;    16,73963
+MINY;   -18,27633
+XYDATA
+240,0000;-1,25173;202,473
+239,0000;-1,48849;204,471
+238,0000;-1,77051;206,561
+237,0000;-2,13776;208,75
+236,0000;-2,58771;211,086
+235,0000;-3,05937;213,301
+234,0000;-3,67687;215,696
+233,0000;-4,45478;218,251
+232,0000;-5,12432;220,289
+231,0000;-6,05569;222,782
+230,0000;-7,08528;225,406
+229,0000;-8,09446;227,932
+228,0000;-9,11588;230,454
+227,0000;-10,1813;233,037
+226,0000;-11,1945;235,642
+225,0000;-12,0893;238,119
+224,0000;-12,9644;240,636
+223,0000;-13,7106;243,044
+222,0000;-14,393;245,67
+221,0000;-14,9968;248,193
+220,0000;-15,3756;250,598
+219,0000;-15,7634;253,428
+218,0000;-16,0246;256,001
+217,0000;-16,2915;258,718
+216,0000;-16,4732;261,475
+215,0000;-16,6274;264,295
+214,0000;-16,8685;267,552
+213,0000;-17,168;271,027
+212,0000;-17,617;275,001
+211,0000;-18,0106;279,033
+210,0000;-18,2763;283,776
+209,0000;-18,249;289,12
+208,0000;-17,7125;295,531
+207,0000;-16,5233;302,73
+206,0000;-14,7441;310,612
+205,0000;-12,2566;320,289
+204,0000;-9,52842;330,886
+203,0000;-6,43918;344,171
+202,0000;-2,75184;360,904
+201,0000;0,857027;380,71
+200,0000;4,56189;405,604
+199,0000;8,21936;433,804
+198,0000;12,8081;470,708
+197,0000;16,3432;514,823
+196,0000;16,7396;574,099
+195,0000;15,1103;649,371
+194,0000;9,72303;745,886
+193,0000;4,81002;857,129
+192,0000;0,716588;961,952
+191,0000;-2,15402;1023,77
+190,0000;-2,89024;1050,31
+
+##### Extended Information
+[Comments]
+Sample name;221108_single_spectra_example
+Comment
+User
+Division
+Company;IBR
+
+[Detailed Information]
+Creation date;8/11/2022 11:16
+
+Data array type;Linear data array * 2
+Horizontal axis;Wavelength [nm]
+Vertical axis(1);CD [mdeg]
+Vertical axis(2);HT [V]
+Start;240 nm
+End;190 nm
+Data interval;1 nm
+Data points;51      
+
+[Measurement Information]
+Instrument name;J-1500
+Model name;J-1500
+Serial No.;B043061638
+
+Detector;PM-539
+Detector S/N;B043061638
+  Lock-in amp.;X mode
+  HT volt;Auto
+
+Accessory;PTC-517
+Accessory S/N;B020861646
+  Temperature;25.04 C
+  Control sensor;Holder
+  Monitor sensor;Holder
+  Start Mode;Keep target temperature +/-0.10 deg C while 5 seconds
+
+Measurement date;8/11/2022 11:16
+
+CD Overload detect;43
+Photometric mode;CD, HT
+Measure range;240 - 190 nm
+Data pitch;1 nm
+CD scale;200 mdeg/1.0 dOD
+FL scale;200 mdeg/1.0 dOD
+D.I.T.;4 sec
+Bandwidth;10.00 nm
+Start mode;Immediately
+Scanning mode;Continuous
+Scanning speed;50 nm/min
+Baseline correction;None
+Shutter control;Auto
+Accumulations;4
+N2 Flowmeter;Manual
+
+
