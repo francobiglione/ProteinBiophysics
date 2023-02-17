@@ -394,8 +394,8 @@ class cd_melting_spectra(): #Al llamar la clase debo pasarle el path del archivo
     CD['Wavelength [nm]'] = list(CD.index.values)
     HT['Wavelength [nm]'] = list(HT.index.values)
 
-    CD.columns = [value.replace(',','.') for value in CD.columns.values]
-    HT.columns = [value.replace(',','.') for value in HT.columns.values]
+    CD.columns = [float(value.replace(',','.')) for value in CD.columns.values]
+    HT.columns = [float(value.replace(',','.')) for value in HT.columns.values]
 
     self.wavelength = list(CD.index.values) #Creo atributo de la clase con longitudes de onda medidas
     self.temperatures = list(CD.columns.values[:-1].astype(float)) #Extraigo nombre de las columnas
