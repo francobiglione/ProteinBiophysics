@@ -207,7 +207,7 @@ class cd_spectra():
       pathlength: Float. Optical pathlength of the cell used to record the spectra. The default of None behaves like ``pathlength=1``
     '''
     self.ellipticity = self.ellipticity/(10*concentration*aa_number*pathlength)
-
+    self.ellipticity.name = 'CD_mre [deg.cm2.dmol-1]'
   def integrate(self,wv_limit_lower,wv_limit_upper): #Define una suma de riemann
     ''' Approximates the absolute integral under the spectra by applying Riemann's sum. 
     
