@@ -195,7 +195,7 @@ class cd_spectra():
       polyorder: order of the polynomial
 
     '''
-    self.smooth = savgol_filter(self.ellipticity, wdw, polyorder)
+    self.smoothed = savgol_filter(self.ellipticity, wdw, polyorder)
 
   def mre(self,concentration,aa_number = 1,pathlength=1):
     '''Calculates the mean ellipticity and replaces the ellipticity values
