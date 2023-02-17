@@ -89,7 +89,7 @@ class cd_spectra():
       for position, line in enumerate(file_csv):
           if position == 0: 
            self.title = line[0].split(';')[1] #Guardo el titulo del espectro] #Guardo el titulo del espectro
-          elif "NPOINTS" in line:
+          elif "NPOINTS" in line[0]:
               self.npoints = int(line[0].split(';')[1]) #Guardo del numero de puntos adquiridos
           elif "XYDATA" in line: 
               start = position+1 #Encuentro el número de linea donde empiezan los datos del espectro
