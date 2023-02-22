@@ -6,5 +6,5 @@ This repository includes libraries to analyze structural biology data.
 - abs_library: analize raw Absorbance data .csv files acquired in JASCO spectrophotometers. This library contains only one class to upload single absobrance spectra.
 
 - Tutorials: folder with tutorial notebooks and files to learn how to use each library.
-    - CD library tutorial available in the following notebook: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/francobiglione/ProteinBiophysics/blob/main/tutorials/CD_tutorial.ipynb)
-    - Absorbance library tutorial available in the following notebook: [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/francobiglione/ProteinBiophysics/blob/main/tutorials/Abs_tutorial.ipynb) 
+    - CD library tutorial [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/francobiglione/ProteinBiophysics/blob/main/tutorials/CD_tutorial.ipynb)
+    - Absorbance library tutorial [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/francobiglione/ProteinBiophysics/blob/main/tutorials/Abs_tutorial.ipynb) 
