@@ -78,8 +78,8 @@ class abs_spectra():
     self.wavelength = self.data['Wavelength [nm]'] 
     self.abs_raw = self.data['Abs [UA]']
     self.abs = self.data['Abs [UA]']
-    self.wv_min = self.wavelength.iloc[-1]
-    self.wv_max= self.wavelength.iloc[0]
+    self.wv_min = self.wavelength.min()
+    self.wv_max= self.wavelength.max()
 
     self.corrected_blank = False
     self.corrected_wv = False
