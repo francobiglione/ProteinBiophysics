@@ -95,31 +95,31 @@ class cd_spectra():
       for position, line in enumerate(file_csv):
           
           if position == 0: 
-            self.title = line[0].split(';')[1] #Guardo el titulo del espectro] #Guardo el titulo del espectro
+            self.title = line[0].split(';')[1] #Guardo el titulo del espectro] 
           elif "XYDATA" in line: 
-              start = position+1 #Encuentro el número de linea donde empiezan los datos del espectro
+              start = position+1 
           elif '##### Extended Information' in line:
-              end = position-1 #Encuentro fin de los datos
+              end = position-1
               break
             
     self.info = pd.read_csv(self.path, delimiter = ';', names =['Information', 'Data'], nrows = start, decimal = ',' ).T
-    self.info.columns = self.info.iloc[0] #Seteo los nombres de las columnas
-    self.info.drop("Information",inplace=True) #Elimino la columna con nombres duplicados
+    self.info.columns = self.info.iloc[0] 
+    self.info.drop("Information",inplace=True) 
             
     self.data = pd.read_csv(self.path, delimiter = ';', names =self.cols, header = start-1, 
                                       nrows = (end-start), decimal = ',' )
     
-    self.metadata = pd.read_csv(self.path, delimiter = ';', names =['Metadata', 'Data'], header = end+1, decimal = ',' ).T #Creo dataframe con metadata y transpongo con .T
-    self.metadata.columns = self.metadata.iloc[0].str.strip() #Seteo los nombres de las columnas y elimino los espacios vacios al principio o al final
-    self.metadata.drop("Metadata",inplace=True)  #Elimino la columna con nombres duplicados
+    self.metadata = pd.read_csv(self.path, delimiter = ';', names =['Metadata', 'Data'], header = end+1, decimal = ',' ).T 
+    self.metadata.columns = self.metadata.iloc[0].str.strip() 
+    self.metadata.drop("Metadata",inplace=True)  
     
-    #Creo data frame con los datos
+
 
     self.wavelength_raw = self.data['Wavelength [nm]']    
-    self.wavelength = self.data['Wavelength [nm]'] #Creo atributo de la clase con longitudes de onda medidas
+    self.wavelength = self.data['Wavelength [nm]'] 
     self.ellipticity_raw = self.data['CD [mdeg]']
-    self.ellipticity = self.data['CD [mdeg]'] #Creo atributo con elipticidades
-    self.ht = self.data['HT [V]']    #Creo atributo con HT
+    self.ellipticity = self.data['CD [mdeg]'] 
+    self.ht = self.data['HT [V]']   
     if abs:
       self.abs = self.data['Abs [UA]']
 
@@ -128,7 +128,7 @@ class cd_spectra():
 
     position_cutoff = len(self.wavelength)
 
-    for position, ht in enumerate(self.data['HT [V]']): #por default considera que los valores de HT mayores a 600 no son confiables
+    for position, ht in enumerate(self.data['HT [V]']): s
       if ht>ht_max:
           position_cutoff= position
           break
@@ -167,10 +167,10 @@ class cd_spectra():
         
         for position, line in enumerate(data_baseline):
             if "XYDATA" in line: 
-                start= position+1 #Encuentro el número de linea donde empiezan los datos del espectro
+                start= position+1 
             elif '##### Extended Information' in line:
-                end = position-1 #Encuentro fin de los datos
-                break #Una vez que encuentro el fin de los datos corto la iteración
+                end = position-1 
+                break 
             
       self.blank = pd.read_csv(baseline_path, delimiter = ';', names =self.cols, header = start-1, 
                                       nrows = (end-start), decimal = ',' )
@@ -208,7 +208,7 @@ class cd_spectra():
     '''
     self.ellipticity = self.ellipticity/(10*concentration*aa_number*pathlength)
     self.ellipticity.name = 'CD_mre [deg.cm2.dmol-1]'
-  def integrate(self,wv_limit_lower,wv_limit_upper): #Define una suma de riemann
+  def integrate(self,wv_limit_lower,wv_limit_upper): 
     ''' Approximates the absolute integral under the spectra by applying Riemann's sum. 
     
     Parameters
@@ -219,7 +219,7 @@ class cd_spectra():
     '''
     self.integral = self.wv_delta * self.ellipticity.iloc[self.wavelength[self.wavelength == wv_limit_upper].index[0]:self.wavelength[self.wavelength == wv_limit_lower].index[0]+1].sum()
 
-class cd_melting_curve(): #Al llamar la clase debo pasarle el path del archivo .csv donde esta el espectro y HT cutoff
+class cd_melting_curve(): 
   '''This class is to import a CD melting curve acquired in a JASCO spectropolarimeter and exported as CSV file
 
   Parameters
@@ -271,7 +271,7 @@ class cd_melting_curve(): #Al llamar la clase debo pasarle el path del archivo .
   
   def __init__(self, path, ht_max = 600, abs = False):
     self.path = path #Nombre con extensión .csv
-    self.name = os.path.basename(self.path)[:-4] #Me deja el nombre del espectro quitandole la extensión csv
+    self.name = os.path.basename(self.path)[:-4]
     
     self.cols = ['Temperature', 'CD [mdeg]', 'HT [V]']
     
@@ -282,29 +282,29 @@ class cd_melting_curve(): #Al llamar la clase debo pasarle el path del archivo .
       file_csv = csv.reader(rawdata)
       for position, line in enumerate(file_csv):
           if position == 0: 
-           self.title = line[0].split(';')[1] #Guardo el titulo del espectro] #Guardo el titulo del espectro
+           self.title = line[0].split(';')[1] 
           elif "XYDATA" in line: 
-            start = position+1 #Encuentro el número de linea donde empiezan los datos del espectro
+            start = position+1 
           elif '##### Extended Information' in line:
-            end = position-1 #Encuentro fin de los datos
+            end = position-1 
             break
             
     self.info = pd.read_csv(self.path, delimiter = ';', names =['Information', 'Data'], nrows = start, decimal = ',' ).T
-    self.info.columns = self.info.iloc[0] #Seteo los nombres de las columnas
-    self.info.drop("Information",inplace=True) #Elimino la columna con nombres duplicados
+    self.info.columns = self.info.iloc[0] 
+    self.info.drop("Information",inplace=True) 
             
     self.data = pd.read_csv(self.path, delimiter = ';', names =self.cols, header = start-1, 
                                       nrows = (end-start), decimal = ',' )
     
-    self.metadata = pd.read_csv(self.path, delimiter = ';', names =['Metadata', 'Data'], header = end+1, decimal = ',' ).T #Creo dataframe con metadata y transpongo con .T
-    self.metadata.columns = self.metadata.iloc[0].str.strip() #Seteo los nombres de las columnas y elimino los espacios vacios al principio o al final
-    self.metadata.drop("Metadata",inplace=True)  #Elimino la columna con nombres duplicados
+    self.metadata = pd.read_csv(self.path, delimiter = ';', names =['Metadata', 'Data'], header = end+1, decimal = ',' ).T 
+    self.metadata.columns = self.metadata.iloc[0].str.strip() 
+    self.metadata.drop("Metadata",inplace=True)  
     
-    #Creo data frame con los datos
+   
         
-    self.temperatures = self.data['Temperature'] #Creo atributo de la clase con longitudes de onda medidas
-    self.ellipticity = self.data['CD [mdeg]'] #Creo atributo con elipticidades
-    self.ht = self.data['HT [V]']    #Creo atributo con HT
+    self.temperatures = self.data['Temperature'] 
+    self.ellipticity = self.data['CD [mdeg]'] 
+    self.ht = self.data['HT [V]']   
     
     if abs:
       self.abs = self.data['Abs [UA]']
@@ -325,7 +325,7 @@ class cd_melting_curve(): #Al llamar la clase debo pasarle el path del archivo .
     '''
     self.smoothed = savgol_filter(self.ellipticity, wdw, polyorder)
 
-class cd_melting_spectra(): #Al llamar la clase debo pasarle el path del archivo .csv donde esta el espectro y HT cutoff.
+class cd_melting_spectra(): 
   '''This class is to import the CD spectra acquired in a JASCO spectropolarimeter in temperature interval mode and exported as CSV file
 
   Parameters
@@ -368,25 +368,25 @@ class cd_melting_spectra(): #Al llamar la clase debo pasarle el path del archivo
   
   
   def  __init__(self, path, ht_max = 600):
-    self.path = path #Nombre con extensión
+    self.path = path
     self.name = os.path.basename(self.path)[:-4]
     with open(self.path) as rawdata: 
       data = csv.reader(rawdata)
       for position, line in enumerate(data):
           if 'TITLE' in line[0]: 
-            self.title = line[0].split(';')[1] #Guardo el titulo del espectro
+            self.title = line[0].split(';')[1] 
           elif 'Channel 1' in line: 
-              start= position+1 #Encuentro el número de linea donde empiezan los datos de elipticidad
+              start= position+1 
           elif 'Channel 2' in line:
-              end = position-1 #Encuentro fin de los datos de elipticidad
-              break #Una vez que encuentro el fin de los datos corto la iteración
+              end = position-1 
+              break
           
       CD = pd.read_csv(self.path, delimiter = ';', header = start, nrows = (end-start), index_col = 0, decimal = ',' )
       HT = pd.read_csv(self.path, delimiter = ';', header = (end+2), index_col = 0, decimal = ',')
 
     self.info = pd.read_csv(self.path, delimiter = ';', names =['Information', 'Data'], nrows = start, decimal = ',' ).T
-    self.info.columns = self.info.iloc[0] #Seteo los nombres de las columnas
-    self.info.drop("Information",inplace=True) #Elimino la columna con nombres duplicados
+    self.info.columns = self.info.iloc[0] 
+    self.info.drop("Information",inplace=True)
 
     delta = self.info['DELTAX'][0]
     self.wv_delta = abs(float(delta.replace(',','.')))
@@ -397,8 +397,8 @@ class cd_melting_spectra(): #Al llamar la clase debo pasarle el path del archivo
     CD.columns = [value.replace(',','.') for value in CD.columns.values]
     HT.columns = [value.replace(',','.') for value in HT.columns.values]
 
-    self.wavelength = list(CD.index.values) #Creo atributo de la clase con longitudes de onda medidas
-    self.temperatures = list(CD.columns.values[:-1].astype(float)) #Extraigo nombre de las columnas
+    self.wavelength = list(CD.index.values) 
+    self.temperatures = list(CD.columns.values[:-1].astype(float)) 
 
     CD = CD.melt(id_vars ='Wavelength [nm]', var_name='Temperature', value_name='CD_raw [mdeg]')
     HT = HT.melt(id_vars ='Wavelength [nm]',var_name='Temperature', value_name='HT [V]')
@@ -440,7 +440,7 @@ class cd_melting_spectra(): #Al llamar la clase debo pasarle el path del archivo
     
     self.data['CD_smoothed [mdeg]'] = savgol_filter(self.data[column], wdw, polyorder)
   
-  def integrate(self,wv_limit_lower,wv_limit_upper): #Define una suma de riemann
+  def integrate(self,wv_limit_lower,wv_limit_upper):
     ''' Approximates the absolute integral under the spectra by applying Riemann's sum. The result is a list of integrals in the same order as the attribute temperatures.
     
     Parameters
