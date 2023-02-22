@@ -95,7 +95,7 @@ class cd_spectra():
       for position, line in enumerate(file_csv):
           
           if position == 0: 
-            self.title = line[0].split(';')[1] #Guardo el titulo del espectro] 
+            self.title = line[0].split(';')[1]
           elif "XYDATA" in line: 
               start = position+1 
           elif '##### Extended Information' in line:
@@ -128,7 +128,7 @@ class cd_spectra():
 
     position_cutoff = len(self.wavelength)
 
-    for position, ht in enumerate(self.data['HT [V]']): s
+    for position, ht in enumerate(self.data['HT [V]']):
       if ht>ht_max:
           position_cutoff= position
           break
