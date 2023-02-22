@@ -123,8 +123,8 @@ class cd_spectra():
     if abs:
       self.abs = self.data['Abs [UA]']
 
-    self.wv_min = self.wavelength.iloc[-1]
-    self.wv_max= self.wavelength.iloc[0]
+    self.wv_min = self.wavelength.min()
+    self.wv_max= self.wavelength.max()
 
     position_cutoff = len(self.wavelength)
 
